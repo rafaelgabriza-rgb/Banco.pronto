@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#000000">
+  <title>Entrar | Banco Centralx</title>
+  <link rel="icon" type="image/png" href="../imagens/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="entrada.css">
+</head>
+<body>
+  <main class="entrada">
+
+    <section class="marca">
+      <img class="marca__logo" src="../imagens/imgladoppp.png" width="661" height="473" alt="Banco Centralx">
+    </section>
+
+    <section class="painel">
+      <div class="painel__conteudo">
+
+        <!-- ENTRAR -->
+        <form id="form-login" class="form" novalidate>
+          <h1 class="form__titulo">Entrar</h1>
+          <p class="form__apoio">Acesse sua conta com usuário e senha.</p>
+
+          <div class="campo">
+            <label class="campo__rotulo" for="login-usuario">Usuário</label>
+            <input class="campo__entrada" id="login-usuario" name="username" type="text"
+                   autocomplete="username" autocapitalize="none" spellcheck="false" required>
+          </div>
+
+          <div class="campo">
+            <label class="campo__rotulo" for="login-senha">Senha</label>
+            <div class="campo__caixa">
+              <input class="campo__entrada campo__entrada--com-botao" id="login-senha" name="senha" type="password"
+                     autocomplete="current-password" required>
+              <button class="campo__ver" type="button" data-alvo="login-senha" aria-pressed="false">Mostrar</button>
+            </div>
+          </div>
+
+          <p class="erro" id="erro-login" role="alert" hidden></p>
+          <button class="botao botao--principal" type="submit">Entrar</button>
+        </form>
+
+        <!-- CRIAR CONTA -->
+        <form id="form-cadastro" class="form" novalidate hidden>
+          <h1 class="form__titulo">Criar conta</h1>
+         
+
+          <div class="campo">
+            <label class="campo__rotulo" for="cad-nome">Nome completo</label>
+            <input class="campo__entrada" id="cad-nome" name="nome" type="text" autocomplete="name" required>
+          </div>
+
+          <div class="campo">
+            <label class="campo__rotulo" for="cad-usuario">Usuário</label>
+            <input class="campo__entrada" id="cad-usuario" name="username" type="text"
+                   autocomplete="username" autocapitalize="none" spellcheck="false"
+                   aria-describedby="dica-usuario" required>
+            <p class="campo__dica" id="dica-usuario">Letras minúsculas, números, _ ou . (3 a 20 caracteres)</p>
+          </div>
+
+          <div class="campo">
+            <label class="campo__rotulo" for="cad-email">E-mail</label>
+            <input class="campo__entrada" id="cad-email" name="email" type="email"
+                   autocomplete="email" autocapitalize="none" spellcheck="false" required>
+          </div>
+
+          <div class="campo">
+            <label class="campo__rotulo" for="cad-senha">Senha</label>
+            <div class="campo__caixa">
+              <input class="campo__entrada campo__entrada--com-botao" id="cad-senha" name="senha" type="password"
+                     autocomplete="new-password" aria-describedby="dica-senha" required>
+              <button class="campo__ver" type="button" data-alvo="cad-senha" aria-pressed="false">Mostrar</button>
+            </div>
+            <p class="campo__dica" id="dica-senha">Pelo menos 6 caracteres.</p>
+          </div>
+
+          <div class="campo">
+            <label class="campo__rotulo" for="cad-confirmar">Confirmar senha</label>
+            <div class="campo__caixa">
+              <input class="campo__entrada campo__entrada--com-botao" id="cad-confirmar" name="confirmar" type="password"
+                     autocomplete="new-password" required>
+              <button class="campo__ver" type="button" data-alvo="cad-confirmar" aria-pressed="false">Mostrar</button>
+            </div>
+          </div>
+
+          <p class="erro" id="erro-cadastro" role="alert" hidden></p>
+          <button class="botao botao--principal" type="submit">Criar conta</button>
+        </form>
+
+      </div>
+
+      <footer class="rodape">
+        <div id="rodape-login">
+          <p class="rodape__texto">Ainda não tem conta?</p>
+          <button class="botao botao--secundario" type="button" data-ir="cadastro">Criar conta</button>
+        </div>
+        <div id="rodape-cadastro" hidden>
+          <p class="rodape__texto">Já tem conta?</p>
+          <button class="botao botao--secundario" type="button" data-ir="login">Entrar</button>
+        </div>
+      </footer>
+    </section>
+
+  </main>
+
+  <script src="entrada.js"></script>
+</body>
+</html>

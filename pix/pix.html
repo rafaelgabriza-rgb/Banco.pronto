@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#000000">
+
+    <title>Pix | Banco Centralx</title>
+
+    <link rel="icon" type="image/png" href="../imagens/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600&display=swap">
+
+    <!-- Menu, cabeçalho e lista de movimentações vêm do CSS da Home; o que é só do Pix fica em pix.css -->
+    <link rel="stylesheet" href="../home/style.css">
+    <link rel="stylesheet" href="pix.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- MENU LATERAL -->
+    <aside class="menu">
+
+        <div class="menu__topo">
+            <img
+                src="../imagens/logo-branca.png"
+                alt="Banco Centralx"
+                class="menu__logo"
+            >
+        </div>
+
+        <nav class="menu__navegacao">
+
+            <a href="/home/" class="menu__item">
+                <span>⌂</span>
+                Início
+            </a>
+
+            <a href="/pix/" class="menu__item menu__item--ativo" aria-current="page">
+                <span>↔</span>
+                Pix
+            </a>
+
+                        <a href="/cartoes/" class="menu__item">
+                <span>▣</span>
+                Cartões
+            </a>
+
+            <a href="/extrato/" class="menu__item">
+                <span>▤</span>
+                Extrato
+            </a>
+
+            <a href="/poupanca/" class="menu__item">
+                <span>◉</span>
+                Poupança
+            </a>
+
+        </nav>
+
+        <button class="menu__sair" id="botao-sair" type="button">
+            Sair
+        </button>
+
+    </aside>
+
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="conteudo">
+
+        <!-- CABEÇALHO -->
+        <header class="cabecalho">
+
+            <div>
+                <p class="cabecalho__pequeno">Enviar e receber</p>
+                <h1>Pix</h1>
+            </div>
+
+            <button class="perfil" id="botao-perfil" type="button" aria-label="Perfil">
+                <span id="inicial-usuario">U</span>
+            </button>
+
+        </header>
+
+
+        <!-- SALDO -->
+        <section class="pix-saldo" aria-label="Saldo disponível">
+            <p>Saldo disponível</p>
+            <strong id="saldo-conta">R$ 0,00</strong>
+        </section>
+
+
+        <div class="pix-grade">
+
+            <!-- ENVIAR / RECEBER / CHAVES -->
+            <section class="pix-principal">
+
+                <div class="abas" role="tablist" aria-label="Opções do Pix">
+                    <button class="aba" role="tab" type="button" id="aba-enviar"
+                            data-aba="enviar" aria-controls="painel-enviar" aria-selected="true">Enviar</button>
+                    <button class="aba" role="tab" type="button" id="aba-receber"
+                            data-aba="receber" aria-controls="painel-receber" aria-selected="false" tabindex="-1">Receber</button>
+                    <button class="aba" role="tab" type="button" id="aba-chaves"
+                            data-aba="chaves" aria-controls="painel-chaves" aria-selected="false" tabindex="-1">Minhas chaves</button>
+                </div>
+
+
+                <!-- ========== ENVIAR ========== -->
+                <div class="painel" id="painel-enviar" role="tabpanel" aria-labelledby="aba-enviar">
+
+                    <!-- etapa 1: dados -->
+                    <form id="form-enviar" novalidate>
+                        <h2>Enviar Pix</h2>
+                        <p class="painel__apoio">Digite a chave da pessoa ou cole um código Pix copia e cola.</p>
+
+                        <div class="campo">
+                            <label class="campo__rotulo" for="enviar-chave">Chave Pix ou código</label>
+                            <input class="campo__entrada" id="enviar-chave" type="text"
+                                   autocomplete="off" autocapitalize="none" spellcheck="false"
+                                   placeholder="E-mail, CPF ou telefone"
+                                   aria-describedby="dica-codigo">
+                            <p class="campo__dica" id="dica-codigo" hidden>Código Pix reconhecido: chave e valor preenchidos.</p>
+                        </div>
+
+                        <div class="campo">
+                            <label class="campo__rotulo" for="enviar-valor">Valor</label>
+                            <input class="campo__entrada" id="enviar-valor" type="text"
+                                   inputmode="numeric" autocomplete="off" placeholder="R$ 0,00">
+                        </div>
+
+                        <div class="campo">
+                            <label class="campo__rotulo" for="enviar-mensagem">Mensagem <span class="campo__opcional">(opcional)</span></label>
+                            <input class="campo__entrada" id="enviar-mensagem" type="text"
+                                   maxlength="80" autocomplete="off">
+                        </div>
+
+                        <p class="erro" id="erro-enviar" role="alert" hidden></p>
+                        <button class="botao botao--principal" type="submit">Continuar</button>
+                    </form>
+
+                    <!-- etapa 2: confirmar -->
+                    <div id="etapa-confirmar" hidden>
+                        <h2 id="titulo-confirmar" tabindex="-1">Confirme o Pix</h2>
+                        <p class="painel__apoio">Confira os dados. O Pix é imediato e não pode ser desfeito.</p>
+
+                        <dl class="resumo">
+                            <div class="resumo__linha"><dt>Valor</dt><dd id="conf-valor"></dd></div>
+                            <div class="resumo__linha"><dt>Chave</dt><dd id="conf-chave"></dd></div>
+                            <div class="resumo__linha" id="conf-mensagem-linha"><dt>Mensagem</dt><dd id="conf-mensagem"></dd></div>
+                        </dl>
+
+                        <p class="erro" id="erro-confirmar" role="alert" hidden></p>
+
+                        <div class="botoes">
+                            <button class="botao botao--principal" type="button" id="botao-confirmar">Confirmar Pix</button>
+                            <button class="botao botao--secundario" type="button" id="botao-voltar-form">Voltar</button>
+                        </div>
+                    </div>
+
+                    <!-- etapa 3: comprovante -->
+                    <div id="etapa-comprovante" hidden>
+                        <div class="comprovante__topo">
+                            <span class="comprovante__icone" aria-hidden="true">✓</span>
+                            <h2 id="titulo-comprovante" tabindex="-1">Pix enviado</h2>
+                            <strong class="comprovante__valor" id="comp-valor"></strong>
+                            <p class="comprovante__data" id="comp-data"></p>
+                        </div>
+
+                        <dl class="resumo">
+                            <div class="resumo__linha"><dt>Para</dt><dd id="comp-para"></dd></div>
+                            <div class="resumo__linha"><dt>Chave</dt><dd id="comp-chave"></dd></div>
+                            <div class="resumo__linha"><dt>De</dt><dd id="comp-de"></dd></div>
+                            <div class="resumo__linha" id="comp-mensagem-linha"><dt>Mensagem</dt><dd id="comp-mensagem"></dd></div>
+                            <div class="resumo__linha"><dt>Nº da transação</dt><dd id="comp-id"></dd></div>
+                        </dl>
+
+                        <div class="botoes">
+                            <button class="botao botao--principal" type="button" id="botao-novo-pix">Fazer outro Pix</button>
+                            <a class="botao botao--secundario" href="/home/">Voltar ao início</a>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <!-- ========== RECEBER ========== -->
+                <div class="painel" id="painel-receber" role="tabpanel" aria-labelledby="aba-receber" hidden>
+
+                    <form id="form-receber" novalidate>
+                        <h2>Receber Pix</h2>
+                        <p class="painel__apoio">Escolha a chave que vai receber e, se quiser, defina um valor.</p>
+
+                        <div class="campo">
+                            <label class="campo__rotulo" for="receber-chave">Chave</label>
+                            <select class="campo__entrada" id="receber-chave"></select>
+                        </div>
+
+                        <div class="campo">
+                            <label class="campo__rotulo" for="receber-valor">Valor <span class="campo__opcional">(opcional)</span></label>
+                            <input class="campo__entrada" id="receber-valor" type="text"
+                                   inputmode="numeric" autocomplete="off" placeholder="R$ 0,00">
+                        </div>
+
+                        <p class="erro" id="erro-receber" role="alert" hidden></p>
+                        <button class="botao botao--principal" type="submit">Gerar código Pix</button>
+                    </form>
+
+                    <div class="cobranca" id="resultado-cobranca" hidden>
+                        <h3>Pix copia e cola</h3>
+                        <p class="painel__apoio" id="cobranca-resumo"></p>
+                        <div class="codigo" id="cobranca-codigo"></div>
+                        <div class="botoes">
+                            <button class="botao botao--secundario" type="button" id="copiar-codigo">Copiar código</button>
+                            <button class="botao botao--secundario" type="button" id="copiar-chave-receber">Copiar só a chave</button>
+                        </div>
+                        <p class="painel__nota">Quem for pagar cola o código no campo “Chave Pix ou código”, na aba Enviar.</p>
+                    </div>
+
+                </div>
+
+
+                <!-- ========== MINHAS CHAVES ========== -->
+                <div class="painel" id="painel-chaves" role="tabpanel" aria-labelledby="aba-chaves" hidden>
+
+                    <h2>Minhas chaves</h2>
+                    <p class="painel__apoio" id="contagem-chaves">Você pode ter até 5 chaves.</p>
+
+                    <ul class="chaves" id="lista-chaves"></ul>
+
+                    <form id="form-chave" class="nova-chave" novalidate>
+                        <h3>Cadastrar nova chave</h3>
+
+                        <div class="campo">
+                            <label class="campo__rotulo" for="chave-tipo">Tipo</label>
+                            <select class="campo__entrada" id="chave-tipo">
+                                <option value="email">E-mail</option>
+                                <option value="cpf">CPF</option>
+                                <option value="telefone">Telefone</option>
+                                <option value="aleatoria">Chave aleatória</option>
+                            </select>
+                        </div>
+
+                        <div class="campo" id="campo-chave-valor">
+                            <label class="campo__rotulo" for="chave-valor" id="rotulo-chave-valor">E-mail</label>
+                            <input class="campo__entrada" id="chave-valor" type="text"
+                                   autocomplete="off" autocapitalize="none" spellcheck="false"
+                                   placeholder="voce@email.com" aria-describedby="dica-chave">
+                            <p class="campo__dica" id="dica-chave">Este banco é fictício: não use dados reais.</p>
+                        </div>
+
+                        <p class="campo__dica" id="dica-aleatoria" hidden>O banco gera uma chave aleatória para você.</p>
+
+                        <p class="erro" id="erro-chave" role="alert" hidden></p>
+                        <button class="botao botao--principal" type="submit">Cadastrar chave</button>
+                    </form>
+
+                </div>
+
+            </section>
+
+
+            <!-- HISTÓRICO -->
+            <aside class="pix-historico">
+
+                <div class="secao__cabecalho">
+                    <h2>Últimos Pix</h2>
+                </div>
+
+                <div class="transacoes" id="lista-pix">
+                    <div class="transacao transacao--vazia">
+                        <p>Carregando…</p>
+                    </div>
+                </div>
+
+            </aside>
+
+        </div>
+
+    </main>
+
+</div>
+
+<div class="aviso-copiado" id="aviso-copiado" role="status" aria-live="polite" hidden></div>
+
+<script src="pix.js"></script>
+
+</body>
+</html>

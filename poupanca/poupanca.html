@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    >
+
+    <meta
+        name="theme-color"
+        content="#000000"
+    >
+
+    <title>Poupança | Banco Centralx</title>
+
+    <link
+        rel="icon"
+        type="image/png"
+        href="../imagens/favicon.png"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600&display=swap"
+    >
+
+    <!-- CSS GERAL DO BANCO -->
+    <link
+        rel="stylesheet"
+        href="../home/style.css"
+    >
+
+    <!-- CSS DA POUPANÇA -->
+    <link
+        rel="stylesheet"
+        href="poupanca.css"
+    >
+
+</head>
+
+
+<body>
+
+<div class="app">
+
+
+    <!-- ==================================================
+         MENU LATERAL
+    =================================================== -->
+
+    <aside class="menu">
+
+
+        <div class="menu__topo">
+
+            <img
+                src="../imagens/logo-branca.png"
+                alt="Banco Centralx"
+                class="menu__logo"
+            >
+
+        </div>
+
+
+        <nav class="menu__navegacao">
+
+
+            <a
+                href="/home/"
+                class="menu__item"
+            >
+                <span>⌂</span>
+                Início
+            </a>
+
+
+            <a
+                href="/pix/"
+                class="menu__item"
+            >
+                <span>↔</span>
+                Pix
+            </a>
+
+
+            <a
+                href="/cartoes/"
+                class="menu__item"
+            >
+                <span>▣</span>
+                Cartões
+            </a>
+
+
+            <a
+                href="/extrato/"
+                class="menu__item"
+            >
+                <span>▤</span>
+                Extrato
+            </a>
+
+
+            <a
+                href="/poupanca/"
+                class="menu__item menu__item--ativo"
+                aria-current="page"
+            >
+                <span>◉</span>
+                Poupança
+            </a>
+
+
+        </nav>
+
+
+        <button
+            class="menu__sair"
+            id="botao-sair"
+            type="button"
+        >
+            Sair
+        </button>
+
+
+    </aside>
+
+
+    <!-- ==================================================
+         CONTEÚDO PRINCIPAL
+    =================================================== -->
+
+    <main class="conteudo">
+
+
+        <!-- CABEÇALHO -->
+
+        <header class="cabecalho">
+
+
+            <div>
+
+                <p class="cabecalho__pequeno">
+                    Seu dinheiro guardado
+                </p>
+
+                <h1>
+                    Poupança
+                </h1>
+
+            </div>
+
+
+            <button
+                class="perfil"
+                id="botao-perfil"
+                type="button"
+                aria-label="Perfil"
+            >
+                <span id="inicial-usuario">
+                    U
+                </span>
+            </button>
+
+
+        </header>
+
+
+        <!-- ==================================================
+             SALDO DA POUPANÇA
+        =================================================== -->
+
+        <section class="saldo-card">
+
+
+            <div class="saldo-card__topo">
+
+
+                <div>
+
+                    <p class="saldo-card__label">
+                        Saldo da poupança
+                    </p>
+
+
+                    <h3 id="saldo-poupanca">
+                        R$ 0,00
+                    </h3>
+
+                </div>
+
+
+                <div class="saldo-card__icone">
+                    🏦
+                </div>
+
+
+            </div>
+
+
+            <div class="saldo-card__info">
+
+
+                <div class="info-box">
+
+                    <span>
+                        Rendimento acumulado
+                    </span>
+
+                    <strong id="rendimento-acumulado">
+                        R$ 0,00
+                    </strong>
+
+                </div>
+
+
+                <div class="info-box">
+
+                    <span>
+                        Rendimento diário
+                    </span>
+
+                    <strong id="rendimento-diario">
+                        0,00% ao dia
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+        <!-- ==================================================
+             BOTÕES
+        =================================================== -->
+
+        <section class="acoes">
+
+
+            <button
+                type="button"
+                id="btn-depositar"
+                class="btn btn-primary"
+            >
+
+                <span>
+                    ＋
+                </span>
+
+                Guardar dinheiro
+
+            </button>
+
+
+            <button
+                type="button"
+                id="btn-retirar"
+                class="btn btn-secondary"
+            >
+
+                <span>
+                    −
+                </span>
+
+                Retirar dinheiro
+
+            </button>
+
+
+        </section>
+
+
+        <!-- ==================================================
+             AVISO
+        =================================================== -->
+
+        <section class="aviso-poupanca">
+
+
+            <div class="aviso-poupanca__icone">
+                💰
+            </div>
+
+
+            <div>
+
+                <h3>
+                    Como funciona?
+                </h3>
+
+
+                <p>
+                    Quando você guarda dinheiro, o valor sai da
+                    sua conta bancária e vai para a poupança.
+                    O dinheiro guardado fica separado do saldo
+                    disponível da sua conta.
+                </p>
+
+            </div>
+
+
+        </section>
+
+
+        <!-- ==================================================
+             HISTÓRICO
+        =================================================== -->
+
+        <section class="historico">
+
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2>
+                        Movimentações
+                    </h2>
+
+                    <p>
+                        Histórico da sua poupança
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="lista-poupanca"
+                class="lista-poupanca"
+            >
+
+                <div class="sem-historico">
+                    Nenhuma movimentação na poupança.
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+</div>
+
+
+<!-- ==================================================
+     MODAL
+=================================================== -->
+
+<div
+    id="modal"
+    class="modal escondido"
+>
+
+
+    <div class="modal-content">
+
+
+        <button
+            type="button"
+            id="fechar-modal"
+            class="modal-fechar"
+            aria-label="Fechar"
+        >
+            ×
+        </button>
+
+
+        <div class="modal-header">
+
+
+            <div class="modal-icone">
+                💰
+            </div>
+
+
+            <div>
+
+                <p
+                    id="modal-subtitulo"
+                    class="modal-subtitulo"
+                >
+                    Guardar dinheiro
+                </p>
+
+
+                <h2 id="modal-titulo">
+                    Adicionar à poupança
+                </h2>
+
+
+                <p id="modal-descricao">
+                    Informe quanto deseja transferir da sua conta
+                    para a poupança.
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- VALOR -->
+
+        <div class="campo-valor">
+
+
+            <label for="valor">
+                Valor
+            </label>
+
+
+            <div class="input-valor-container">
+
+
+                <span class="simbolo-moeda">
+                    R$
+                </span>
+
+
+                <input
+                    type="text"
+                    id="valor"
+                    inputmode="numeric"
+                    autocomplete="off"
+                    placeholder="0,00"
+                >
+
+
+            </div>
+
+
+        
+
+
+        </div>
+
+
+        <!-- MENSAGEM -->
+
+        <p
+            id="mensagem"
+            class="mensagem"
+        ></p>
+
+
+        <!-- CONFIRMAR -->
+
+        <button
+            type="button"
+            id="confirmar-operacao"
+            class="btn btn-primary btn-confirmar"
+        >
+            Guardar dinheiro
+        </button>
+
+
+    </div>
+
+
+</div>
+
+
+<script
+    src="/poupanca/poupanca.js"
+    defer
+></script>
+
+
+</body>
+
+</html>

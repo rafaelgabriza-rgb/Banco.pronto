@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#000000">
+
+    <title>Cartões | Banco Centralx</title>
+
+    <link rel="icon" type="image/png" href="../imagens/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600&display=swap">
+
+    <!-- Menu, cabeçalho e lista de movimentações vêm da Home; campos, botões e abas vêm do Pix -->
+    <link rel="stylesheet" href="../home/style.css">
+    <link rel="stylesheet" href="../pix/pix.css">
+    <link rel="stylesheet" href="cartoes.css">
+    <link rel="stylesheet" href="../extrato/extrato.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- MENU LATERAL -->
+    <aside class="menu">
+
+        <div class="menu__topo">
+            <img
+                src="../imagens/logo-branca.png"
+                alt="Banco Centralx"
+                class="menu__logo"
+            >
+        </div>
+
+        <nav class="menu__navegacao">
+
+            <a href="/home/" class="menu__item">
+                <span>⌂</span>
+                Início
+            </a>
+
+            <a href="/pix/" class="menu__item">
+                <span>↔</span>
+                Pix
+            </a>
+
+            <a href="/cartoes/" class="menu__item menu__item--ativo" aria-current="page">
+                <span>▣</span>
+                Cartões
+            </a>
+
+            <a href="/extrato" class="menu__item">
+                <span>▤</span>
+                Extrato
+            </a>
+
+            <a href="/poupanca/" class="menu__item">
+                <span>◉</span>
+                Poupança
+            </a>
+
+        </nav>
+
+        <button class="menu__sair" id="botao-sair" type="button">
+            Sair
+        </button>
+
+    </aside>
+
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="conteudo">
+
+        <header class="cabecalho">
+
+            <div>
+                <p class="cabecalho__pequeno">Crédito, débito e Black</p>
+                <h1>Cartões</h1>
+            </div>
+
+            <button class="perfil" id="botao-perfil" type="button" aria-label="Perfil">
+                <span id="inicial-usuario">U</span>
+            </button>
+
+        </header>
+
+        <div class="abas" role="tablist" aria-label="Escolha o cartão">
+            <button class="aba" role="tab" type="button" id="aba-credito"
+                    data-aba="credito" aria-controls="conteudo-cartao" aria-selected="true">Crédito</button>
+            <button class="aba" role="tab" type="button" id="aba-debito"
+                    data-aba="debito" aria-controls="conteudo-cartao" aria-selected="false" tabindex="-1">Débito</button>
+            <button class="aba" role="tab" type="button" id="aba-black"
+                    data-aba="black" aria-controls="conteudo-cartao" aria-selected="false" tabindex="-1">Black</button>
+        </div>
+
+        <div id="conteudo-cartao" role="tabpanel">
+            <div class="transacoes">
+                <div class="transacao transacao--vazia"><p>Carregando…</p></div>
+            </div>
+        </div>
+
+    </main>
+
+</div>
+
+
+<!-- JANELA DE AÇÕES (compra, pagar fatura, limite) -->
+<dialog class="modal" id="modal" aria-labelledby="modal-titulo">
+    <form id="modal-form" novalidate>
+        <h2 id="modal-titulo"></h2>
+        <p class="painel__apoio" id="modal-apoio"></p>
+
+        <div id="modal-visual"></div>
+        <div id="modal-campos"></div>
+
+        <p class="erro" id="modal-erro" role="alert" hidden></p>
+
+        <div class="botoes">
+            <button class="botao botao--principal" type="submit" id="modal-ok">Confirmar</button>
+            <button class="botao botao--secundario" type="button" id="modal-cancelar">Cancelar</button>
+        </div>
+    </form>
+</dialog>
+
+<div class="aviso-copiado" id="aviso-copiado" role="status" aria-live="polite" hidden></div>
+
+<script src="cartoes.js"></script>
+
+</body>
+</html>

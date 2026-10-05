@@ -1,0 +1,42 @@
+# Segredos e configuração local
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+secrets/
+credentials*.json
+service-account*.json
+
+# Ambientes virtuais
+.venv/
+venv/
+env/
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+*.egg-info/
+build/
+dist/
+
+# Dumps e bancos locais, logs
+*.sqlite3
+*.db
+*.dump
+*.bak
+*.log
+
+# IDE e sistema
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

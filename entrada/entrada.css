@@ -1,0 +1,261 @@
+/* Banco Centralx - tela de entrada (login e criar conta)
+   Preto e branco, minimalista. No celular: logo no topo preto e folha branca embaixo.
+   No computador: tela dividida, logo à esquerda e formulário à direita. */
+
+:root {
+  --preto: #000000;
+  --branco: #ffffff;
+  --grafite: #595959;     /* textos de apoio sobre o branco */
+  --traco: #cfcfcf;       /* borda dos campos */
+  --fundo-suave: #f2f2f2; /* hover dos botões claros */
+  --erro: #c62828;
+  --raio: 12px;
+  --fonte: "Sora", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+[hidden] { display: none !important; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: var(--preto);
+  color: var(--preto);
+  font-family: var(--fonte);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* ---------- estrutura (celular primeiro) ---------- */
+
+.entrada {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+.marca {
+  display: grid;
+  place-items: center;
+  padding: calc(env(safe-area-inset-top, 0px) + 40px) 24px 64px;
+  
+}
+
+.marca__logo {
+  display: block;
+  width: min(44vw, 170px);
+  height: auto;
+  animation: logo-entra 900ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.painel {
+  display: flex;
+  flex-direction: column;
+  margin-top: -28px;
+  padding: 36px 24px calc(env(safe-area-inset-bottom, 0px) + 28px);
+  background: var(--branco);
+  border-radius: 28px 28px 0 0;
+}
+
+.painel__conteudo {
+  flex: 1;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+/* ---------- formulário ---------- */
+
+.form__titulo {
+  margin: 0 0 6px;
+  font-size: 1.75rem;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.form__apoio {
+  margin: 0 0 28px;
+  color: var(--grafite);
+  font-size: 0.9375rem;
+}
+
+.campo { margin-bottom: 18px; }
+
+.campo__rotulo {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.campo__caixa { position: relative; }
+
+.campo__entrada {
+  display: block;
+  width: 100%;
+  height: 52px;
+  padding: 0 16px;
+  border: 1.5px solid var(--traco);
+  border-radius: var(--raio);
+  background: var(--branco);
+  color: var(--preto);
+  font: inherit;
+  transition: border-color 120ms ease, box-shadow 120ms ease;
+}
+
+.campo__entrada--com-botao { padding-right: 92px; }
+
+.campo__entrada:hover { border-color: #9a9a9a; }
+
+.campo__entrada:focus {
+  outline: none;
+  border-color: var(--preto);
+  box-shadow: 0 0 0 1px var(--preto);
+}
+
+.campo__entrada[aria-invalid="true"] {
+  border-color: var(--erro);
+  box-shadow: 0 0 0 1px var(--erro);
+}
+
+.campo__dica {
+  margin: 6px 0 0;
+  color: var(--grafite);
+  font-size: 0.8125rem;
+  line-height: 1.4;
+}
+
+.campo__ver {
+  position: absolute;
+  top: 4px;
+  right: 6px;
+  height: 44px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--preto);
+  font: 600 0.875rem var(--fonte);
+  cursor: pointer;
+}
+
+.campo__ver:hover { background: var(--fundo-suave); }
+
+.erro {
+  margin: 0 0 16px;
+  padding: 2px 0 2px 12px;
+  border-left: 3px solid var(--erro);
+  color: var(--erro);
+  font-size: 0.875rem;
+  line-height: 1.45;
+}
+
+/* ---------- botões ---------- */
+
+.botao {
+  display: block;
+  width: 100%;
+  height: 52px;
+  border: 1.5px solid var(--preto);
+  border-radius: var(--raio);
+  font: 600 1rem var(--fonte);
+  cursor: pointer;
+  transition: background-color 120ms ease, transform 120ms ease;
+}
+
+.botao--principal { background: var(--preto); color: var(--branco); }
+.botao--principal:hover { background: #262626; }
+
+.botao--secundario { background: var(--branco); color: var(--preto); }
+.botao--secundario:hover { background: var(--fundo-suave); }
+
+.botao:active { transform: scale(0.99); }
+
+.botao:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+:focus-visible {
+  outline: 3px solid var(--preto);
+  outline-offset: 3px;
+}
+
+/* ---------- rodapé: "Criar conta" fica lá embaixo ---------- */
+
+.rodape {
+  width: 100%;
+  max-width: 400px;
+  margin: 36px auto 0;
+}
+
+.rodape__texto {
+  margin: 0 0 10px;
+  color: var(--grafite);
+  font-size: 0.9375rem;
+  text-align: center;
+}
+
+/* ---------- animação: só a logo, uma vez, ao abrir ---------- */
+
+@keyframes logo-entra {
+  from { opacity: 0; transform: translateY(10px) scale(0.97); }
+  to   { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marca__logo { animation: none; }
+  .botao, .campo__entrada { transition: none; }
+}
+
+/* ---------- computador: tela dividida ---------- */
+
+@media (min-width: 900px) {
+  .entrada {
+    grid-template-columns: 1fr minmax(480px, 44vw);
+    grid-template-rows: 1fr;
+  }
+
+  .marca {
+  padding: 0;
+
+  overflow: hidden;
+}
+
+  .marca__logo { width: min(100vw, 320px); }
+
+  .painel {
+    margin-top: 0;
+    padding: 56px clamp(40px, 5vw, 96px) 40px;
+    border-radius: 0;
+  }
+
+  .painel__conteudo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0;
+  }
+
+  .rodape { margin: 32px 0 0; }
+}
+
+@media (max-height: 640px) and (min-width: 900px) {
+  .painel { padding-top: 32px; }
+}
+
+@media (min-width: 900px) {
+  .marca__logo {
+    width: 95%;
+    max-width: 950px;
+    height: auto;
+  }
+}

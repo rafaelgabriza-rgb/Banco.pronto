@@ -1,0 +1,990 @@
+/* ==========================================================
+   BANCO CENTRALX - PÁGINA DE POUPANÇA
+   ========================================================== */
+
+:root {
+    --poupanca-verde: #c99a3d;
+    --poupanca-verde-claro: #e0bd67;
+    --poupanca-verde-suave: #f7f1e4;
+
+    --ouro: #d4a94a;
+    --ouro-claro: #f3dc9a;
+
+    --preto: #111111;
+    --grafite: #2b2b2b;
+
+    --cinza-escuro: #555555;
+    --cinza-medio: #777777;
+    --cinza-claro: #ececec;
+    --cinza-fundo: #f5f6f7;
+
+    --branco: #ffffff;
+
+    --raio: 18px;
+}
+
+
+
+
+
+/* ==========================================================
+   CARD DO SALDO
+   ========================================================== */
+
+.saldo-card {
+    position: relative;
+
+    width: 100%;
+    padding: 28px;
+
+    border-radius: 22px;
+background:
+    radial-gradient(
+        90% 120% at 100% 0%,
+        rgba(243, 220, 154, 0.22),
+        transparent 55%
+    ),
+    linear-gradient(
+        135deg,
+        #18140d 0%,
+        #0b0b0b 48%,
+        #15110a 100%
+    );
+
+    color: var(--branco);
+
+    overflow: hidden;
+
+    box-shadow:
+        0 18px 40px rgba(0, 0, 0, 0.16);
+}
+
+
+.saldo-card::before {
+    content: "";
+
+    position: absolute;
+
+    width: 230px;
+    height: 230px;
+
+    right: -80px;
+    top: -110px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255, 255, 255, 0.11),
+            transparent 70%
+        );
+
+    pointer-events: none;
+}
+
+
+.saldo-card::after {
+    content: "";
+
+    position: absolute;
+
+    width: 180px;
+    height: 180px;
+
+    left: -110px;
+    bottom: -120px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255, 255, 255, 0.07),
+            transparent 70%
+        );
+
+    pointer-events: none;
+}
+
+
+/* ==========================================================
+   TOPO DO SALDO
+   ========================================================== */
+
+.saldo-card__topo {
+    position: relative;
+
+    z-index: 1;
+
+    display: flex;
+
+    align-items: flex-start;
+    justify-content: space-between;
+
+    gap: 20px;
+}
+
+
+.saldo-card__label {
+    margin: 0 0 8px;
+
+    color: rgba(255, 255, 255, 0.75);
+
+    font-size: 14px;
+}
+
+
+.saldo-card h3 {
+    margin: 0;
+
+    font-size: clamp(34px, 5vw, 46px);
+
+    line-height: 1;
+
+    font-weight: 700;
+
+    letter-spacing: -0.03em;
+}
+
+
+/* ==========================================================
+   ÍCONE DO CARD
+   ========================================================== */
+
+.saldo-card__icone {
+    display: grid;
+
+    width: 56px;
+    height: 56px;
+
+    flex-shrink: 0;
+
+    place-items: center;
+
+    border: 1px solid rgba(255, 255, 255, 0.16);
+
+    border-radius: 16px;
+
+    background: rgba(255, 255, 255, 0.10);
+
+    font-size: 25px;
+
+    backdrop-filter: blur(8px);
+}
+
+
+/* ==========================================================
+   INFORMAÇÕES
+   ========================================================== */
+
+.saldo-card__info {
+    position: relative;
+
+    z-index: 1;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 12px;
+
+    margin-top: 28px;
+}
+
+
+.info-box {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 6px;
+
+    min-width: 0;
+
+    padding: 15px 16px;
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    border-radius: 14px;
+
+    background: rgba(255, 255, 255, 0.08);
+
+    backdrop-filter: blur(8px);
+}
+
+
+.info-box span {
+    color: rgba(255, 255, 255, 0.68);
+
+    font-size: 12px;
+}
+
+
+.info-box strong {
+    color: var(--branco);
+
+    font-size: 17px;
+
+    font-weight: 600;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* ==========================================================
+   AÇÕES
+   ========================================================== */
+
+.acoes {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 12px;
+
+    margin-top: 18px;
+}
+
+
+.btn {
+    min-height: 50px;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    padding: 0 18px;
+
+    border: 0;
+
+    border-radius: 13px;
+
+    font-family: inherit;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.18s ease,
+        opacity 0.18s ease,
+        box-shadow 0.18s ease;
+}
+
+
+.btn:hover {
+    transform: translateY(-1px);
+}
+
+
+.btn:active {
+    transform: translateY(0);
+}
+
+
+.btn:disabled {
+    cursor: not-allowed;
+
+    opacity: 0.6;
+
+    transform: none;
+}
+
+
+.btn span {
+    font-size: 20px;
+
+    line-height: 1;
+}
+
+
+.btn-primary {
+    background: var(--preto);
+
+    color: var(--branco);
+
+    box-shadow:
+        0 8px 18px rgba(0, 0, 0, 0.12);
+}
+
+
+.btn-primary:hover {
+    box-shadow:
+        0 10px 22px rgba(0, 0, 0, 0.18);
+}
+
+
+.btn-secondary {
+    background: var(--branco);
+
+    color: var(--preto);
+
+    border: 1px solid #dedede;
+}
+
+
+.btn-secondary:hover {
+    background: #fafafa;
+}
+
+
+/* ==========================================================
+   AVISO
+   ========================================================== */
+
+.aviso-poupanca {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 16px;
+
+    margin-top: 24px;
+
+    padding: 20px;
+
+    border: 1px solid #d8eadf;
+
+    border-radius: var(--raio);
+
+    background: var(--poupanca-verde-suave);
+}
+
+
+.aviso-poupanca__icone {
+    display: grid;
+
+    width: 44px;
+    height: 44px;
+
+    flex-shrink: 0;
+
+    place-items: center;
+
+    border-radius: 13px;
+
+    background: var(--branco);
+
+    font-size: 21px;
+
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+
+.aviso-poupanca h3 {
+    margin: 1px 0 5px;
+
+    color: var(--preto);
+
+    font-size: 16px;
+
+    font-weight: 600;
+}
+
+
+.aviso-poupanca p {
+    margin: 0;
+
+    color: var(--cinza-escuro);
+
+    font-size: 13px;
+
+    line-height: 1.6;
+}
+
+
+/* ==========================================================
+   HISTÓRICO
+   ========================================================== */
+
+.historico {
+    margin-top: 30px;
+
+    padding: 24px;
+
+    border-radius: var(--raio);
+
+    background: var(--branco);
+}
+
+
+.section-header {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin-bottom: 18px;
+}
+
+
+.section-header h2 {
+    margin: 0;
+
+    color: var(--preto);
+
+    font-size: 20px;
+
+    font-weight: 650;
+}
+
+
+.section-header p {
+    margin: 5px 0 0;
+
+    color: var(--cinza-medio);
+
+    font-size: 13px;
+}
+
+
+/* ==========================================================
+   LISTA
+   ========================================================== */
+
+.lista-poupanca {
+    display: flex;
+
+    flex-direction: column;
+}
+
+
+.transacao {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 16px 0;
+
+    border-bottom: 1px solid #eeeeee;
+}
+
+.transacao:last-child {
+    border-bottom: 0;
+}
+
+
+.transacao__info strong {
+    color: var(--preto);
+
+    font-size: 14px;
+
+    font-weight: 600;
+}
+
+
+.transacao__valor { 
+    flex-shrink: 0;
+
+    color: var(--preto);
+
+    font-size: 14px;
+
+    font-weight: 600;
+}
+
+
+.sem-historico  {
+    padding: 30px 15px;
+
+    color: var(--cinza-medio);
+
+    font-size: 14px;
+
+    text-align: center;
+}
+
+
+.transacao {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 16px 0;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.transacao:last-child {
+    border-bottom: 0;
+}
+
+.transacao__info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+}
+
+.transacao__info strong {
+    color: var(--preto);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.transacao__info span {
+    color: var(--cinza-medio);
+    font-size: 12px;
+}
+
+.transacao__valor {
+    flex-shrink: 0;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.transacao__valor.entrada {
+    color: var(--poupanca-verde);
+}
+
+.transacao__valor.saida {
+    color: #b42318;
+}
+
+.sem-historico {
+    padding: 30px 15px;
+    color: var(--cinza-medio);
+    font-size: 14px;
+    text-align: center;
+}
+
+.escondido {
+    display: none !important;
+}
+
+.mensagem {
+    min-height: 20px;
+    margin: 10px 0 0;
+    color: var(--cinza-medio);
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.modal-subtitulo {
+    margin: 0 0 3px;
+    color: var(--cinza-medio);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.modal-header h2 {
+    margin: 0;
+    color: var(--preto);
+    font-size: 20px;
+    font-weight: 650;
+}
+
+.modal-header #modal-descricao {
+    margin: 5px 0 0;
+    color: var(--cinza-medio);
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+/* ==========================================================
+   MODAL
+   ========================================================== */
+
+.modal {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 9999;
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 100%;
+
+    max-width: none;
+
+    padding: 16px;
+
+    border: 0;
+
+    background: rgba(0, 0, 0, 0.58);
+
+    overflow-y: auto;
+}
+
+
+.modal.ativo {
+    display: flex;
+}
+
+
+/* ==========================================================
+   CONTEÚDO DO MODAL
+   ========================================================== */
+
+.modal-content {
+    position: relative;
+
+    width: min(440px, 100%);
+
+    padding: 27px 25px 24px;
+
+    border-radius: 21px;
+
+    background: var(--branco);
+
+    color: var(--preto);
+
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.25);
+
+    animation:
+        abrirModal 0.18s ease;
+}
+
+
+@keyframes abrirModal {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(12px)
+            scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+/* ==========================================================
+   FECHAR MODAL
+   ========================================================== */
+
+.modal-fechar {
+    position: absolute;
+
+    top: 13px;
+    right: 14px;
+
+    display: grid;
+
+    width: 38px;
+    height: 38px;
+
+    place-items: center;
+
+    border: 0;
+
+    border-radius: 50%;
+
+    background: #f2f2f2;
+
+    color: var(--grafite);
+
+    font-size: 25px;
+
+    line-height: 1;
+
+    cursor: pointer;
+}
+
+
+.modal-fechar:hover {
+    background: #e8e8e8;
+}
+
+
+/* ==========================================================
+   CABEÇALHO DO MODAL
+   ========================================================== */
+
+.modal-header {
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    padding-right: 35px;
+
+    margin-bottom: 25px;
+}
+
+
+.modal-icone {
+    display: grid;
+
+    width: 49px;
+    height: 49px;
+
+    flex-shrink: 0;
+
+    place-items: center;
+
+    border-radius: 14px;
+
+    background: var(--poupanca-verde-suave);
+
+    font-size: 23px;
+}
+
+
+.modal-header h2 {
+    margin: 0;
+
+    color: var(--preto);
+
+    font-size: 20px;
+
+    font-weight: 650;
+}
+
+
+.modal-header p {
+    margin: 4px 0 0;
+
+    color: var(--cinza-medio);
+
+    font-size: 13px;
+}
+
+
+/* ==========================================================
+   CAMPO DO VALOR
+   ========================================================== */
+
+.campo-valor {
+    margin-top: 5px;
+}
+
+
+.campo-valor label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: var(--grafite);
+
+    font-size: 13px;
+
+    font-weight: 600;
+}
+
+
+.input-valor-container {
+    display: flex;
+
+    align-items: center;
+
+    width: 100%;
+
+    min-height: 62px;
+
+    border: 2px solid #dddddd;
+
+    border-radius: 14px;
+
+    background: #fafafa;
+
+    transition:
+        border-color 0.18s ease,
+        box-shadow 0.18s ease;
+}
+
+
+.input-valor-container:focus-within {
+    border-color:
+        var(--poupanca-verde);
+
+    background:
+        var(--branco);
+
+    box-shadow:
+        0 0 0 4px
+        rgba(23, 107, 67, 0.08);
+}
+
+
+.simbolo-moeda {
+    padding-left: 17px;
+
+    color: var(--cinza-medio);
+
+    font-size: 17px;
+
+    font-weight: 600;
+}
+
+
+.input-valor-container input {
+    width: 100%;
+
+    min-width: 0;
+
+    height: 58px;
+
+    padding:
+        0 16px
+        0 9px;
+
+    border: 0;
+
+    outline: none;
+
+    background: transparent;
+
+    color: var(--preto);
+
+    font-family: inherit;
+
+    font-size: 27px;
+
+    font-weight: 600;
+
+    text-align: right;
+
+    font-variant-numeric:
+        tabular-nums;
+}
+
+
+.input-valor-container input::placeholder {
+    color: #b5b5b5;
+}
+
+
+.campo-valor small {
+    display: block;
+
+    margin-top: 8px;
+
+    color: var(--cinza-medio);
+
+    font-size: 12px;
+
+    line-height: 1.5;
+}
+
+
+/* ==========================================================
+   CONFIRMAR
+   ========================================================== */
+
+.btn-confirmar {
+    width: 100%;
+
+    margin-top: 22px;
+}
+
+
+/* ==========================================================
+   MOBILE
+   ========================================================== */
+
+@media (max-width: 800px) {
+
+    .topbar h2 {
+        font-size: 26px;
+    }
+
+
+    .saldo-card {
+        padding: 23px 20px;
+
+        border-radius: 19px;
+    }
+
+
+    .saldo-card h3 {
+        font-size:
+            clamp(30px, 9vw, 40px);
+    }
+
+
+    .saldo-card__info {
+        grid-template-columns: 1fr;
+    }
+
+
+    .historico {
+        padding: 20px 17px;
+    }
+
+}
+
+
+@media (max-width: 520px) {
+
+    .acoes {
+        grid-template-columns: 1fr;
+    }
+
+
+    .aviso-poupanca {
+        gap: 12px;
+
+        padding: 17px;
+    }
+
+
+    .aviso-poupanca__icone {
+        width: 40px;
+        height: 40px;
+
+        font-size: 19px;
+    }
+
+
+    .transacao {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 6px;
+    }
+
+
+    .transacao:last-child {
+        align-self: flex-start;
+    }
+
+
+    .modal-content {
+        padding:
+            23px 18px 20px;
+    }
+
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+
+    .btn {
+        transition: none;
+    }
+
+
+    .modal-content {
+        animation: none;
+    }
+
+}

@@ -1,0 +1,566 @@
+/* Banco Centralx - Home */
+
+:root {
+    --preto: #000000;
+    --branco: #ffffff;
+    --cinza: #f4f4f4;
+    --cinza-medio: #8a8a8a;
+    --traco: #dedede;
+    --grafite: #333333;
+
+    --raio: 14px;
+
+    --fonte:
+        "Sora",
+        system-ui,
+        -apple-system,
+        "Segoe UI",
+        sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: var(--cinza);
+    color: var(--preto);
+    font-family: var(--fonte);
+}
+
+button,
+a {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+.app {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* =========================
+   MENU
+   ========================= */
+
+.menu {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+
+    width: 250px;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 32px 20px;
+
+    background: var(--preto);
+    color: var(--branco);
+}
+
+.menu__topo {
+    padding: 4px 14px 36px;
+}
+
+.menu__logo {
+    display: block;
+    width: 150px;   /* para aumentar ou diminuir a logo, mude só este valor */
+    height: auto;
+}
+
+.menu__navegacao {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.menu__item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    padding: 13px 14px;
+
+    border-radius: 10px;
+
+    color: #bdbdbd;
+    text-decoration: none;
+
+    transition:
+        background 0.15s ease,
+        color 0.15s ease;
+}
+
+.menu__item span {
+    width: 20px;
+    text-align: center;
+    font-size: 18px;
+}
+
+.menu__item:hover {
+    background: #1c1c1c;
+    color: var(--branco);
+}
+
+.menu__item--ativo {
+    background: var(--branco);
+    color: var(--preto);
+}
+
+.menu__item--ativo:hover {
+    background: var(--branco);
+    color: var(--preto);
+}
+
+.menu__sair {
+    margin-top: auto;
+
+    width: 100%;
+    padding: 13px;
+
+    border: 1px solid #333;
+    border-radius: 10px;
+
+    background: transparent;
+    color: var(--branco);
+}
+
+.menu__sair:hover {
+    background: #1c1c1c;
+}
+
+/* =========================
+   CONTEÚDO
+   ========================= */
+
+.conteudo {
+    width: 100%;
+    max-width: 1200px;
+
+    margin-left: 250px;
+    padding: 42px 50px;
+}
+
+/* =========================
+   CABEÇALHO
+   ========================= */
+
+.cabecalho {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+
+    margin-bottom: 32px;
+}
+
+.cabecalho__pequeno {
+    margin: 0 0 4px;
+
+    color: var(--cinza-medio);
+    font-size: 14px;
+}
+
+.cabecalho h1 {
+    margin: 0;
+
+    font-size: 28px;
+    font-weight: 600;
+    overflow-wrap: anywhere;
+}
+
+.perfil {
+    display: grid;
+    place-items: center;
+    flex: 0 0 auto;
+
+    width: 48px;
+    height: 48px;
+
+    border: 0;
+    border-radius: 50%;
+
+    background: var(--preto);
+    color: var(--branco);
+
+    font-weight: 600;
+}
+
+/* =========================
+   SALDOS
+   ========================= */
+
+.saldos {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 18px;
+
+    margin-bottom: 34px;
+}
+
+.saldo-principal,
+.saldo-secundario {
+    padding: 28px;
+
+    border-radius: var(--raio);
+
+    background: var(--branco);
+}
+
+.saldo-principal {
+    background: var(--preto);
+    color: var(--branco);
+}
+
+.saldo-principal__topo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.saldo-principal p,
+.saldo-secundario p {
+    margin: 0;
+    font-size: 14px;
+}
+
+.saldo-principal strong {
+    display: block;
+
+    margin-top: 16px;
+
+    font-size: 36px;
+    font-weight: 500;
+    overflow-wrap: anywhere;
+}
+
+.saldo-principal__numero {
+    margin-top: 10px !important;
+    color: #aaa;
+}
+
+.saldo-secundario strong {
+    display: block;
+
+    margin: 18px 0;
+
+    font-size: 25px;
+    overflow-wrap: anywhere;
+}
+
+.botao-olho,
+.botao-link {
+    border: 0;
+    background: transparent;
+    color: inherit;
+}
+
+.botao-olho {
+    font-size: 12px;
+}
+
+.botao-link {
+    padding: 0;
+    
+    color: var(--preto);
+    font-size: 13px;
+}
+
+.botao-link:hover {
+    text-decoration: underline;
+}
+
+/* =========================
+   SEÇÕES
+   ========================= */
+
+.secao {
+    margin-bottom: 34px;
+}
+
+.secao__cabecalho {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 14px;
+}
+
+.secao__cabecalho h2 {
+    margin: 0;
+
+    font-size: 18px;
+    font-weight: 600;
+}
+
+/* =========================
+   AÇÕES
+   ========================= */
+
+.acoes {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+.acao {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    min-height: 110px;
+
+    border: 1px solid var(--traco);
+    border-radius: var(--raio);
+
+    background: var(--branco);
+    color: var(--preto);
+
+    transition:
+        transform 0.15s ease,
+        border-color 0.15s ease;
+}
+
+.acao:hover {
+    transform: translateY(-2px);
+    border-color: var(--preto);
+}
+
+.acao__icone {
+    display: grid;
+    place-items: center;
+
+    width: 38px;
+    height: 38px;
+
+    border-radius: 50%;
+
+    background: var(--preto);
+    color: var(--branco);
+
+    font-size: 20px;
+}
+
+/* =========================
+   CONTA
+   ========================= */
+
+.conta {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+
+    background: var(--branco);
+    border-radius: var(--raio);
+}
+
+.conta__item {
+    min-width: 0;
+    padding: 22px 24px;
+}
+
+.conta__item + .conta__item {
+    border-left: 1px solid var(--traco);
+}
+
+.conta__item span {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: var(--cinza-medio);
+    font-size: 13px;
+}
+
+.conta__item strong {
+    font-size: 17px;
+    overflow-wrap: anywhere;
+}
+
+/* =========================
+   TRANSAÇÕES
+   ========================= */
+
+.transacoes {
+    overflow: hidden;
+
+    border-radius: var(--raio);
+    background: var(--branco);
+}
+
+.transacao {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+
+    padding: 18px 24px;
+
+    border-bottom: 1px solid var(--traco);
+}
+
+.transacao:last-child {
+    border-bottom: 0;
+}
+
+.transacao__info {
+    min-width: 0;
+}
+
+.transacao__descricao {
+    margin: 0 0 4px;
+
+    font-size: 14px;
+    font-weight: 500;
+    overflow-wrap: anywhere;
+}
+
+.transacao__detalhe {
+    margin: 0 0 4px;
+
+    color: var(--grafite);
+    font-size: 13px;
+    overflow-wrap: anywhere;
+}
+
+.transacao__data {
+    margin: 0;
+
+    color: var(--cinza-medio);
+    font-size: 12px;
+}
+
+.transacao__valor {
+    flex: 0 0 auto;
+
+    font-size: 14px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.transacao--entrada .transacao__valor {
+    color: #167c3b;
+}
+
+.transacao--saida .transacao__valor {
+    color: #b42318;
+}
+
+.transacao--vazia {
+    justify-content: center;
+
+    padding: 35px;
+
+    color: var(--cinza-medio);
+}
+
+.transacao--vazia p {
+    margin: 0;
+}
+
+.transacao--erro {
+    color: #b42318;
+}
+
+/* =========================
+   MOBILE
+   ========================= */
+
+@media (max-width: 800px) {
+
+    .app {
+        display: block;
+    }
+
+    .menu {
+        position: static;
+
+        width: 100%;
+        height: auto;
+
+        padding: 16px 18px 18px;
+    }
+
+    .menu__topo {
+        display: flex;
+        justify-content: center;
+
+        padding: 0 0 16px;
+    }
+
+    .menu__logo {
+        width: 110px;
+    }
+
+    .menu__navegacao {
+        flex-direction: row;
+        overflow-x: auto;
+    }
+
+    .menu__item {
+        flex: 0 0 auto;
+    }
+
+    .menu__sair {
+        margin-top: 14px;
+    }
+
+    .conteudo {
+        max-width: none;
+        margin-left: 0;
+        padding: 24px 16px 32px;
+    }
+
+    .cabecalho {
+        margin-bottom: 24px;
+    }
+
+    .saldos {
+        grid-template-columns: 1fr;
+        margin-bottom: 28px;
+    }
+
+    .saldo-principal,
+    .saldo-secundario {
+        padding: 22px;
+    }
+
+    .saldo-principal strong {
+        font-size: clamp(24px, 8vw, 30px);
+    }
+
+    .acoes {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .conta {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .conta__item {
+        padding: 18px 20px;
+    }
+
+    .conta__item:nth-child(odd) {
+        border-left: 0;
+    }
+
+    .conta__item:nth-child(n + 3) {
+        border-top: 1px solid var(--traco);
+    }
+
+    .transacao {
+        padding: 16px 18px;
+    }
+
+    .cabecalho h1 {
+        font-size: 24px;
+    }
+}

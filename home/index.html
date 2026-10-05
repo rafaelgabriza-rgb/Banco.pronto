@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#000000">
+
+    <title>Início | Banco Centralx</title>
+
+    <link rel="icon" type="image/png" href="../imagens/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600&display=swap">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- MENU LATERAL -->
+    <aside class="menu">
+
+        <div class="menu__topo">
+            <img
+                src="../imagens/logo-branca.png"
+                alt="Banco Centralx"
+                class="menu__logo"
+            >
+        </div>
+
+        <nav class="menu__navegacao">
+
+            <a href="#" class="menu__item menu__item--ativo">
+                <span>⌂</span>
+                Início
+            </a>
+
+            <a href="/pix/" class="menu__item">
+    <span>↔</span>
+    Pix
+</a>
+            <a href="/cartoes/" class="menu__item">
+                <span>▣</span>
+                Cartões
+            </a>
+
+            <a href="/extrato/" class="menu__item">
+    <span>▤</span>
+    Extrato
+</a>
+
+            <a href="/poupanca/" class="menu__item">
+                <span>◉</span>
+                Poupança
+            </a>
+
+        </nav>
+
+        <button class="menu__sair" id="botao-sair" type="button">
+            Sair
+        </button>
+
+    </aside>
+
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="conteudo">
+
+        <!-- CABEÇALHO -->
+        <header class="cabecalho">
+
+            <div>
+                <p class="cabecalho__pequeno">Bem-vindo de volta</p>
+                <h1 id="nome-usuario">Usuário</h1>
+            </div>
+
+            <button class="perfil" id="botao-perfil" type="button" aria-label="Perfil">
+                <span id="inicial-usuario">U</span>
+            </button>
+
+        </header>
+
+
+        <!-- SALDOS -->
+        <section class="saldos">
+
+            <article class="saldo-principal">
+
+                <div class="saldo-principal__topo">
+                    <p>Saldo disponível</p>
+
+                    <button id="alternar-saldo" class="botao-olho" type="button" aria-pressed="false">
+                        Ocultar
+                    </button>
+                </div>
+
+                <strong id="saldo-conta">R$ 0,00</strong>
+
+                <p class="saldo-principal__numero">
+                    Conta corrente
+                </p>
+
+            </article>
+
+
+            <article class="saldo-secundario">
+
+                <p>Poupança</p>
+
+                <strong id="saldo-poupanca">R$ 0,00</strong>
+
+                <button class="botao-link" data-acao="poupanca" type="button">
+    Ver poupança →
+</button>
+
+            </article>
+
+        </section>
+
+
+        <!-- AÇÕES -->
+        <section class="secao">
+
+            <div class="secao__cabecalho">
+                <h2>Ações rápidas</h2>
+            </div>
+
+            <div class="acoes">
+
+                <button class="acao" data-acao="pix" type="button">
+                    <span class="acao__icone">↗</span>
+                    <span>Pix</span>
+                </button>
+
+              <button class="acao" data-acao="poupanca" type="button">
+    <span class="acao__icone">+</span>
+    <span>Depositar</span>
+</button>
+
+<button class="acao" data-acao="poupanca" type="button">
+    <span class="acao__icone">−</span>
+    <span>Sacar</span>
+</button>
+                <button class="acao" data-acao="transferir" type="button">
+                    <span class="acao__icone">→</span>
+                    <span>Transferir</span>
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- CONTA -->
+        <section class="secao">
+
+            <div class="secao__cabecalho">
+                <h2>Minha conta</h2>
+            </div>
+
+            <div class="conta">
+
+                <div class="conta__item">
+                    <span>Agência</span>
+                    <strong id="agencia">—</strong>
+                </div>
+
+                <div class="conta__item">
+                    <span>Conta</span>
+                    <strong id="numero-conta">—</strong>
+                </div>
+
+                <div class="conta__item">
+                    <span>Patrimônio</span>
+                    <strong id="patrimonio">R$ 0,00</strong>
+                </div>
+
+                <div class="conta__item">
+                    <span>Cartões</span>
+                    <strong id="quantidade-cartoes">0</strong>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- TRANSAÇÕES -->
+        <section class="secao">
+
+            <div class="secao__cabecalho">
+                <h2>Últimas movimentações</h2>
+
+                <button class="botao-link" type="button">
+                    Ver extrato →
+                </button>
+            </div>
+
+            <div class="transacoes" id="lista-transacoes">
+
+                <div class="transacao transacao--vazia">
+                    <p>Carregando…</p>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
+
+

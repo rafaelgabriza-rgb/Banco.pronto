@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    >
+
+    <meta name="theme-color" content="#000000">
+
+    <title>Extrato | Banco Centralx</title>
+
+    <link
+        rel="icon"
+        type="image/png"
+        href="../imagens/favicon.png"
+    >
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600&display=swap"
+    >
+
+    <!-- Base do Banco Centralx -->
+    <link rel="stylesheet" href="../home/style.css">
+
+    <!-- Componentes reutilizados -->
+    <link rel="stylesheet" href="../pix/pix.css">
+
+    <!-- Exclusivo do Extrato -->
+    <link rel="stylesheet" href="extrato.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- =========================
+         MENU LATERAL
+         ========================= -->
+
+    <aside class="menu">
+
+        <div class="menu__topo">
+
+            <img
+                src="../imagens/logo-branca.png"
+                alt="Banco Centralx"
+                class="menu__logo"
+            >
+
+        </div>
+
+
+        <nav class="menu__navegacao">
+
+            <a href="/home/" class="menu__item">
+                <span>⌂</span>
+                Início
+            </a>
+
+            <a href="/pix/" class="menu__item">
+                <span>↔</span>
+                Pix
+            </a>
+
+            <a href="/cartoes/" class="menu__item">
+                <span>▣</span>
+                Cartões
+            </a>
+
+            <a
+                href="/extrato/"
+                class="menu__item menu__item--ativo"
+                aria-current="page"
+            >
+                <span>▤</span>
+                Extrato
+            </a>
+
+            <a href="/poupanca/" class="menu__item">
+                <span>◉</span>
+                Poupança
+            </a>
+
+        </nav>
+
+
+        <button
+            class="menu__sair"
+            id="botao-sair"
+            type="button"
+        >
+            Sair
+        </button>
+
+    </aside>
+
+
+    <!-- =========================
+         CONTEÚDO
+         ========================= -->
+
+    <main class="conteudo">
+
+        <header class="cabecalho">
+
+            <div>
+
+                <p class="cabecalho__pequeno">
+                    Histórico da conta
+                </p>
+
+                <h1>Extrato</h1>
+
+            </div>
+
+
+            <button
+                class="perfil"
+                id="botao-perfil"
+                type="button"
+                aria-label="Perfil"
+            >
+                <span id="inicial-usuario">U</span>
+            </button>
+
+        </header>
+
+
+        <!-- =========================
+             RESUMO
+             ========================= -->
+
+        <section class="extrato-resumo">
+
+            <div class="extrato-resumo__item">
+
+                <span class="extrato-resumo__rotulo">
+                    Entradas
+                </span>
+
+                <strong
+                    id="total-entradas"
+                    class="extrato-resumo__valor entrada"
+                >
+                    R$ 0,00
+                </strong>
+
+            </div>
+
+
+            <div class="extrato-resumo__item">
+
+                <span class="extrato-resumo__rotulo">
+                    Saídas
+                </span>
+
+                <strong
+                    id="total-saidas"
+                    class="extrato-resumo__valor saida"
+                >
+                    R$ 0,00
+                </strong>
+
+            </div>
+
+
+            <div class="extrato-resumo__item">
+
+                <span class="extrato-resumo__rotulo">
+                    Movimentações
+                </span>
+
+                <strong
+                    id="total-movimentacoes"
+                    class="extrato-resumo__valor"
+                >
+                    0
+                </strong>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             FILTROS
+             ========================= -->
+
+        <section class="extrato-filtros">
+
+            <div class="extrato-filtros__busca">
+
+                <label for="campo-busca">
+                    Buscar
+                </label>
+
+                <input
+                    type="search"
+                    id="campo-busca"
+                    placeholder="Ex.: Pix, mercado, poupança..."
+                    autocomplete="off"
+                >
+
+            </div>
+
+
+            <div class="extrato-filtros__tipo">
+
+                <label for="filtro-tipo">
+                    Tipo
+                </label>
+
+                <select id="filtro-tipo">
+
+                    <option value="todos">
+                        Todas
+                    </option>
+
+                    <option value="entrada">
+                        Entradas
+                    </option>
+
+                    <option value="saida">
+                        Saídas
+                    </option>
+
+                    <option value="pix">
+                        Pix
+                    </option>
+
+                    <option value="deposito">
+                        Depósitos
+                    </option>
+
+                    <option value="saque">
+                        Saques
+                    </option>
+
+                    <option value="poupanca">
+                        Poupança
+                    </option>
+
+                    <option value="pagamento_fatura">
+                        Fatura
+                    </option>
+
+                    <option value="rendimento">
+                        Rendimentos
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="botao botao--secundario extrato-filtros__atualizar"
+                id="botao-atualizar"
+            >
+                Atualizar
+            </button>
+
+        </section>
+
+
+        <!-- =========================
+             LISTA
+             ========================= -->
+
+        <section class="extrato-card">
+
+            <div class="extrato-card__cabecalho">
+
+                <div>
+
+                    <h2>
+                        Movimentações
+                    </h2>
+
+                    <p id="texto-resultado">
+                        Carregando...
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="lista-extrato"
+                class="extrato-lista"
+            >
+
+                <div class="extrato-vazio">
+                    Carregando extrato...
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script src="extrato.js"></script>
+
+</body>
+</html>
