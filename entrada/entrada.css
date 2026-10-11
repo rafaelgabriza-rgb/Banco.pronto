@@ -42,16 +42,15 @@ body {
 }
 
 .marca {
-  display: grid;
-  place-items: center;
-  padding: calc(env(safe-area-inset-top, 0px) + 40px) 24px 64px;
-  
+  overflow: hidden;
 }
 
-.marca__logo {
+.marca__imagem {
   display: block;
-  width: min(72vw, 260px);
-  height: auto;
+  width: 100%;
+  height: clamp(220px, 35vh, 320px);
+  object-fit: cover;
+  object-position: center;
   animation: logo-entra 900ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
 }
 
@@ -212,7 +211,7 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .marca__logo { animation: none; }
+  .marca__imagem { animation: none; }
   .botao, .campo__entrada { transition: none; }
 }
 
@@ -225,12 +224,13 @@ body {
   }
 
   .marca {
-  padding: 0;
-
-  overflow: hidden;
+    min-height: 0;
 }
 
-  .marca__logo { width: min(90%, 560px); }
+  .marca__imagem {
+    height: 100%;
+    min-height: 0;
+  }
 
   .painel {
     margin-top: 0;
