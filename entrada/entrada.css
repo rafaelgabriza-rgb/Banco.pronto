@@ -50,7 +50,7 @@ body {
 .marca__imagem {
   display: block;
   width: 100%;
-  height: clamp(150px, 24vh, 220px);
+  height: clamp(120px, 18vh, 170px);
   object-fit: cover;
   object-position: center;
   animation: imagem-entra 900ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
@@ -230,8 +230,9 @@ body {
   }
 
   .marca__imagem {
-    height: 100%;
-    min-height: 0;
+    width: min(78%, 380px);
+    height: min(55vh, 420px);
+    margin: auto;
   }
 
   .painel {
