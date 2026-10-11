@@ -74,7 +74,6 @@ from flask import (
     session,
 )
 
-from werkzeug.exceptions import NotFound
 from werkzeug.security import check_password_hash, generate_password_hash
 
 
@@ -113,7 +112,10 @@ MAX_CHAVES_PIX = 5
 
 app = Flask(__name__, static_folder=None)
 
-app.secret_key = os.environ.get("BCX_SECRET") or secrets.token_hex(32)
+app.secret_key = os.environ.get(
+    "BCX_SECRET",
+    "dev-troque-esta-chave-no-trabalho-final"
+)
 
 app.config.update(
     SESSION_COOKIE_HTTPONLY=True,
@@ -2644,42 +2646,18 @@ def perfil_senha():
 # ============================================================================
 # ARQUIVOS DO SITE
 # ============================================================================
-#
-# Estrutura:
-#
+# Estrutura esperada:
 # Banco/
-#
-#   Back-end/
-#       back.py
-#
-#   entrada/
-#       entrada.html
-#       entrada.css
-#       entrada.js
-#
-#   home/
-#       index.html
-#       style.css
-#       script.js
-#
-#   imagens/
-#       ...
-#
-# Rotas:
-#
-#   /                         -> entrada/entrada.html
-#
-#   /entrada/entrada.html    -> página de login
-#
-#   /home/                    -> home/index.html
-#
-#   /home/style.css           -> CSS da Home
-#
-#   /home/script.js           -> JS da Home
-#
-#   /home/imagem.png         -> imagem da Home
-#
+#   Back-end/back.py
+#   Back-end/schema.sql
+#   entrada/entrada.html
+#   home/index.html
+#   imagens/...
 # ============================================================================
+
+from pathlib import Path
+
+RAIZ_SITE = Path(__file__).resolve().parent.parent
 
 PASTAS_BLOQUEADAS = {
     "back-end",
@@ -2687,8 +2665,9 @@ PASTAS_BLOQUEADAS = {
     "back_end",
     "__pycache__",
     "node_modules",
+    ".git",
+    ".venv",
 }
-
 
 EXTENSOES_PUBLICAS = {
     ".html",
@@ -2707,105 +2686,57 @@ EXTENSOES_PUBLICAS = {
 }
 
 
-def servir_arquivo_do_site(
-    pasta,
-    arquivo
-):
+def servir_arquivo(caminho):
+    """Serve apenas arquivos públicos dentro da raiz do site."""
+    caminho = Path(caminho)
 
-    # Bloqueia pastas ocultas e pastas internas
-    if (
-        pasta.startswith(".")
-        or pasta.startswith("_")
-        or pasta.lower() in PASTAS_BLOQUEADAS
+    if any(
+        parte.startswith(".")
+        or parte.startswith("_")
+        or parte.lower() in PASTAS_BLOQUEADAS
+        for parte in caminho.parts
     ):
         abort(404)
 
-    # Só permite extensões públicas
-    if (
-        os.path.splitext(arquivo)[1].lower()
-        not in EXTENSOES_PUBLICAS
-    ):
+    if caminho.suffix.lower() not in EXTENSOES_PUBLICAS:
         abort(404)
 
-    diretorio = os.path.join(
-        RAIZ,
-        pasta
-    )
+    raiz = RAIZ_SITE.resolve()
+    arquivo = (raiz / caminho).resolve()
 
-    if not os.path.isdir(diretorio):
+    try:
+        arquivo.relative_to(raiz)
+    except ValueError:
+        abort(404)
+
+    if not arquivo.is_file():
         abort(404)
 
     resposta = send_from_directory(
-        diretorio,
-        arquivo
+        str(arquivo.parent),
+        arquivo.name,
     )
-
-    # Durante o desenvolvimento,
-    # sempre carrega a versão mais recente.
     resposta.headers["Cache-Control"] = "no-cache"
-
     return resposta
 
 
-# ============================================================================
-# PÁGINA INICIAL
-# ============================================================================
-
 @app.get("/")
 def pagina_inicial():
+    return redirect("/entrada/entrada.html")
 
-    return redirect(
-        "/entrada/entrada.html"
-    )
-
-
-# ============================================================================
-# ABRIR PASTAS DO SITE
-# ============================================================================
 
 @app.get("/<pasta>/")
 def pagina_da_pasta(pasta):
+    if pasta.lower() in PASTAS_BLOQUEADAS or pasta.startswith((".", "_")):
+        abort(404)
 
-    # HOME usa index.html
-    if pasta.lower() == "home":
-
-        try:
-            return servir_arquivo_do_site(
-                pasta,
-                "index.html"
-            )
-
-        except NotFound:
-            raise
-
-    # As outras pastas continuam usando:
-    # pasta/pasta.html
-    try:
-
-        return servir_arquivo_do_site(
-            pasta,
-            f"{pasta}.html"
-        )
-
-    except NotFound:
-
-        raise
+    nome_arquivo = "index.html" if pasta.lower() == "home" else f"{pasta}.html"
+    return servir_arquivo(f"{pasta}/{nome_arquivo}")
 
 
-# ============================================================================
-# ARQUIVOS INTERNOS DAS PASTAS
-# ============================================================================
-
-@app.get("/<pasta>/<path:arquivo>")
-def arquivo_do_site(
-    pasta,
-    arquivo
-):
-
-    return servir_arquivo_do_site(
-        pasta,
-        arquivo
-    )
+@app.get("/<path:caminho>")
+def arquivo_do_site(caminho):
+    return servir_arquivo(caminho)
 
 
 # ============================================================================
@@ -2830,7 +2761,7 @@ if __name__ == "__main__":
         sys.exit(1)
 
     app.run(
-    host="0.0.0.0",
-    debug=True,
-    port=5000
-)
+        host="0.0.0.0",
+        debug=True,
+        port=5000,
+    )
