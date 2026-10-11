@@ -70,7 +70,8 @@ button {
 
 .menu__logo {
     display: block;
-    width: 150px;   /* para aumentar ou diminuir a logo, mude só este valor */
+    width: 190px;
+    max-width: 100%;
     height: auto;
 }
 
