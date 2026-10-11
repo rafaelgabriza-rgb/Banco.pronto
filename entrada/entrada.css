@@ -50,7 +50,7 @@ body {
 .marca__imagem {
   display: block;
   width: 100%;
-  height: clamp(220px, 35vh, 320px);
+  height: clamp(150px, 24vh, 220px);
   object-fit: cover;
   object-position: center;
   animation: imagem-entra 900ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
@@ -59,14 +59,14 @@ body {
 .painel {
   display: flex;
   flex-direction: column;
-  margin-top: -28px;
-  padding: 36px 24px calc(env(safe-area-inset-bottom, 0px) + 28px);
+  margin-top: -20px;
+  padding: 28px 24px calc(env(safe-area-inset-bottom, 0px) + 24px);
   background: var(--branco);
   border-radius: 28px 28px 0 0;
 }
 
 .painel__conteudo {
-  flex: 1;
+  flex: 0 0 auto;
   width: 100%;
   max-width: 400px;
   margin: 0 auto;
@@ -195,7 +195,7 @@ body {
 .rodape {
   width: 100%;
   max-width: 400px;
-  margin: 36px auto 0;
+  margin: 24px auto 0;
 }
 
 .rodape__texto {
@@ -235,19 +235,19 @@ body {
   }
 
   .painel {
+    justify-content: center;
     margin-top: 0;
     padding: 56px clamp(40px, 5vw, 96px) 40px;
     border-radius: 0;
   }
 
   .painel__conteudo {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin: 0;
+    flex: 0 0 auto;
+    display: block;
+    margin: 0 auto;
   }
 
-  .rodape { margin: 32px 0 0; }
+  .rodape { margin: 24px auto 0; }
 }
 
 @media (max-height: 640px) and (min-width: 900px) {
