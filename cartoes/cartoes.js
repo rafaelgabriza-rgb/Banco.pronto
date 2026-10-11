@@ -220,13 +220,13 @@ function visualCartao(opcoes) {
 
     const agua = document.createElement("img");
     agua.className = "cartao__marca-agua";
-    agua.src = "../imagens/logo-branca.png";
+    agua.src = "../Imagens/logo-branca.png";
     agua.alt = "";
     cartao.appendChild(agua);
 
     const marca = document.createElement("img");
     marca.className = "cartao__marca";
-    marca.src = "../imagens/logo-branca.png";
+    marca.src = "../Imagens/logo-branca.png";
     marca.alt = "";
     cartao.appendChild(marca);
 
