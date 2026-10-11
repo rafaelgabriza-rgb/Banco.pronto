@@ -1,0 +1,2 @@
+# Dependências do serviço Flask, listadas no arquivo mantido pelo back-end.
+-r Back-end/requirements.txt.txt

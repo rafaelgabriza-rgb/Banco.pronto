@@ -772,8 +772,9 @@ def listar_transacoes(
                     WHEN t.tipo = 'pix'
                     THEN 1
 
+                    -- Rendimentos também entram no saldo da poupança.
                     WHEN t.tipo IN
-                        ('deposito', 'poupanca_resgatar')
+                        ('deposito', 'poupanca_resgatar', 'rendimento')
                     THEN 1
 
                     WHEN t.tipo IN
@@ -2011,22 +2012,25 @@ def cartao_debito_compra():
 @login_obrigatorio
 def cartoes_listar():
 
-    db = get_db()
+    cid = g.user["conta_id"]
 
-    s = saldos(
-        db,
-        g.user["conta_id"]
-    )
+    with transacao() as db:
 
-    cartoes = db.execute(
-        """
-        SELECT *
-        FROM cartoes
-        WHERE conta_id = %s
-        ORDER BY id
-        """,
-        (g.user["conta_id"],)
-    ).fetchall()
+        # A tela carrega Cartões junto com a Home; atualizar aqui evita
+        # calcular patrimônio/elegibilidade antes do rendimento diário.
+        aplicar_rendimento(db, cid)
+
+        s = saldos(db, cid)
+
+        cartoes = db.execute(
+            """
+            SELECT *
+            FROM cartoes
+            WHERE conta_id = %s
+            ORDER BY id
+            """,
+            (cid,)
+        ).fetchall()
 
     return ok(
         cartoes=[

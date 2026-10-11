@@ -230,6 +230,7 @@ body {
   }
 
   .marca__imagem {
+    /* Proporção 960:1080 da arte; o terceiro limite faz a caixa caber na tela. */
     width: min(960px, 100%, 88.8889dvh);
     height: auto;
     aspect-ratio: 960 / 1080;

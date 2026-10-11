@@ -56,6 +56,7 @@ const modalCancelar = $("modal-cancelar");
 function el(tag, classe, texto) {
     const e = document.createElement(tag);
     if (classe) e.className = classe;
+    // textContent insere dados como texto simples, sem interpretar HTML digitado pelo usuÃ¡rio.
     if (texto !== undefined) e.textContent = texto;
     return e;
 }
