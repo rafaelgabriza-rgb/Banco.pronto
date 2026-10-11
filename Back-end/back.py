@@ -2702,7 +2702,19 @@ def servir_arquivo(caminho):
         abort(404)
 
     raiz = RAIZ_SITE.resolve()
-    arquivo = (raiz / caminho).resolve()
+    atual = raiz
+    for parte in caminho.parts:
+        candidato = atual / parte
+        if not candidato.exists() and atual.is_dir():
+            correspondencias = [
+                item for item in atual.iterdir()
+                if item.name.casefold() == parte.casefold()
+            ]
+            if correspondencias:
+                candidato = correspondencias[0]
+        atual = candidato
+
+    arquivo = atual.resolve()
 
     try:
         arquivo.relative_to(raiz)
